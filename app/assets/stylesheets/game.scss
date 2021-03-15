@@ -1,0 +1,29 @@
+// Place all the styles related to the Game controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+table, th, td {
+  border: 1px solid black;
+}
+
+.board-row {
+  height: 3em;
+}
+
+.board-tile {
+  width: 3em;
+}
+
+.tile-red {
+  border-radius: 1em;
+  width: 2em;
+  height: 2em;
+  background-color: red;
+}
+
+.tile-blue {
+  border-radius: 1em;
+  width: 2em;
+  height: 2em;
+  background-color: blue;
+}

@@ -1,0 +1,26 @@
+<div id="board">
+  <h2>
+    <% if session.id.to_s == game.red_player %>
+      <span>Red Player</span>
+    <% end %>
+    <% if session.id.to_s == game.blue_player %>
+      <span>Blue Player</span>
+    <% end %>
+    <span> - <%= game.next_move.to_s %>'s move</span>
+    <span> - Red captures: <%= game.red_captures %></span>
+    <span> - Blue captures: <%= game.blue_captures %></span>
+  </h2>
+  <table>
+    <tbody>
+      <% for i in 0..18 %>
+        <tr class="board-row">
+          <% for j in 0..18 %>
+            <td class="board-tile" data-x="<%=j%>" data-y="<%=i%>" data-reflex="click->Board#play">
+              <div class="tile-<%= game.board[i][j].to_s %>"></div>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>
