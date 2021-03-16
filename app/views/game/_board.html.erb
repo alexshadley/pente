@@ -10,6 +10,8 @@
     <span> - Red captures: <%= game.red_captures %></span>
     <span> - Blue captures: <%= game.blue_captures %></span>
   </h2>
+  <% if game.red_player.nil? %><button data-color="red" data-reflex="click->Board#join">Join as Red</button><% end %>
+  <% if game.blue_player.nil? %><button data-color="blue" data-reflex="click->Board#join">Join as Blue</button><% end %>
   <table>
     <tbody>
       <% for i in 0..18 %>

@@ -3,6 +3,22 @@ require "redis_supplier"
 class BoardReflex < ApplicationReflex
   DIRECTIONS = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
 
+  def join
+    redis = RedisSupplier.get
+    @game = Marshal.load(redis.get(params[:id]))
+
+    session_id = session.id.to_s
+
+    if element.dataset['color'] == 'red'
+      @game.red_player = session_id
+      puts 'setting red player'
+    elsif element.dataset['color'] == 'blue'
+      @game.blue_player = session_id
+    end
+
+    redis.set(params[:id], Marshal.dump(@game))
+  end
+
   def play
     redis = RedisSupplier.get
     @game = Marshal.load(redis.get(params[:id]))
