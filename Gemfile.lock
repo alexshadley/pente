@@ -175,7 +175,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     stimulus_reflex (3.4.1)
       cable_ready (>= 4.5)
       nokogiri
@@ -215,6 +214,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actioncable
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
@@ -226,7 +226,6 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
-  sqlite3 (~> 1.4)
   stimulus_reflex (~> 3.4)
   turbolinks (~> 5)
   tzinfo-data
