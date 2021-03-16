@@ -9,7 +9,6 @@ class GameController < ApplicationController
     game = Game.new(SecureRandom.urlsafe_base64(8))
     redis.set(game.id, Marshal.dump(game))
 
-    redirect_to action: "show", id: game.id
   end
 
   def show
