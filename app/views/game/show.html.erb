@@ -1,3 +1,9 @@
+<% if session.id.to_s == @game.red_player %>
+  <h2>Red Player</h2>
+<% end %>
+<% if session.id.to_s == @game.blue_player %>
+  <h2>Blue Player</h2>
+<% end %>
 
 <%= render "board", :game => @game %>
 
