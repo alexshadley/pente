@@ -23,8 +23,9 @@ class BoardReflex < ApplicationReflex
   def checkWin(game, x, y, player)
     # check if current player has hit the capture needs
     if (player == :red && game.red_captures >= CAPTURES_TO_WIN) ||
-       (player == :blue && game.blue_captures >= CAPTURES_TO_WIN):
+       (player == :blue && game.blue_captures >= CAPTURES_TO_WIN)
       return true
+    end
 
     x_max = game.board.length
     y_max = game.board[0].length
