@@ -13,6 +13,10 @@ class Game
   attr_accessor :red_captures
   # number of captures by the blue player
   attr_accessor :blue_captures
+  # winner of a game, nil until a win
+  attr_accessor :winner
+  # winner's session id, nil until a win
+  attr_accessor :winner_id
 
   def initialize(id)
     @id = id
