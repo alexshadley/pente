@@ -27,3 +27,23 @@ table, th, td {
   height: 2em;
   background-color: blue;
 }
+
+.end-box{
+  position: fixed;
+  width: 50%;
+  height: 30%;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  /* mmmm lemon chiffon */
+  background-color: lemonchiffon;
+}
+
+.end-text{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
