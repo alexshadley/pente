@@ -17,8 +17,10 @@
       <% for i in 0..18 %>
         <tr class="board-row">
           <% for j in 0..18 %>
-            <td class="board-tile" data-x="<%=j%>" data-y="<%=i%>" data-reflex="click->Board#play">
-              <div class="tile-<%= game.board[i][j].to_s %>"></div>
+            <td data-x="<%=j%>" data-y="<%=i%>" data-reflex="click->Board#play">
+              <div class = "board-tile">
+                <div class="tile-<%= game.board[i][j].to_s %>"></div>
+              </div>
             </td>
           <% end %>
         </tr>

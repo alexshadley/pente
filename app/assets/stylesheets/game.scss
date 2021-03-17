@@ -6,12 +6,9 @@ table, th, td {
   border: 1px solid black;
 }
 
-.board-row {
-  height: 3em;
-}
-
 .board-tile {
-  width: 3em;
+  min-height: 3em;
+  min-width: 3em;
 }
 
 .tile-red {
