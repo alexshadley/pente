@@ -33,8 +33,8 @@ class BoardReflex < ApplicationReflex
       return true
     end
 
-    x_max = game.board.length
-    y_max = game.board[0].length
+    x_max = game.board.length - 1
+    y_max = game.board[0].length - 1
     up_consecutive = 0
     ur_consecutive = 0
     right_consecutive = 0
@@ -101,6 +101,12 @@ class BoardReflex < ApplicationReflex
     
     # handle captures
     for dir in DIRECTIONS
+      # if three spaces away in this direction isn't on the board then we don't need to check for captures
+      if x + dir[0] * 3 > 18 || x + dir[0] * 3 < 0 ||
+        y + dir[1] * 3 > 18 || y + dir[1] * 3 < 0
+        next
+      end
+
       if @game.board[y + dir[1]][x + dir[0]] == other &&
         @game.board[y + dir[1] * 2][x + dir[0] * 2] == other &&
         @game.board[y + dir[1] * 3][x + dir[0] * 3] == player
