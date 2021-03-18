@@ -17,7 +17,7 @@
   <% end %>
   <div class="row justify-content-center mb-5">
     <% if session.id.to_s != game.red_player && session.id.to_s != game.blue_player %>
-      <% if game.red_player.nil? %><button class="btn btn-danger" data-color="red" data-reflex="click->Board#join">Join as Red</button><% end %>
+      <% if game.red_player.nil? %><button class="btn btn-danger mr-5" data-color="red" data-reflex="click->Board#join">Join as Red</button><% end %>
       <% if game.blue_player.nil? %><button class="btn btn-primary" data-color="blue" data-reflex="click->Board#join">Join as Blue</button><% end %>
     <% end %>
   </div>
