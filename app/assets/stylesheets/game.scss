@@ -2,27 +2,56 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-table, th, td {
-  border: 1px solid black;
+table {
+  border-spacing: 0px;
+}
+
+td {
+  padding: 0px;
+}
+
+.vertical-line {
+  position: absolute;
+  border-left: 1px solid black;
+  height: 38em;
+}
+
+.horizontal-line {
+  position: absolute;
+  border-top: 1px solid black;
+  width: 38em;
 }
 
 .board-tile {
+  position: relative;
   min-height: 2em;
   min-width: 2em;
 }
 
 .tile-red {
+  position:absolute;
+  left: 0.25em;
+  top: 0.25em;
+
   border-radius: 1em;
   width: 1.5em;
   height: 1.5em;
   background-color: red;
+
+  z-index: 1;
 }
 
 .tile-blue {
+  position:absolute;
+  left: 0.25em;
+  top: 0.25em;
+
   border-radius: 1em;
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   background-color: blue;
+
+  z-index: 1;
 }
 
 .end-box{
