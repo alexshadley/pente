@@ -7,14 +7,14 @@ table, th, td {
 }
 
 .board-tile {
-  min-height: 3em;
-  min-width: 3em;
+  min-height: 2em;
+  min-width: 2em;
 }
 
 .tile-red {
   border-radius: 1em;
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   background-color: red;
 }
 

@@ -17,6 +17,8 @@ class Game
   attr_accessor :winner
   # winner's session id, nil until a win
   attr_accessor :winner_id
+  # log of messages
+  attr_accessor :messages
 
   def initialize(id)
     @id = id
@@ -24,5 +26,6 @@ class Game
     @next_move = :red
     @red_captures = 0
     @blue_captures = 0
+    @messages = []
   end
 end

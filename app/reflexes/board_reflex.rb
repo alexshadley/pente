@@ -17,6 +17,12 @@ class BoardReflex < ApplicationReflex
     end
 
     redis.set(params[:id], Marshal.dump(@game))
+
+    #broadcast results to other players/spectators
+    cable_ready["game:#{@game.id}"].morph(
+      selector: "#board",
+      html: render(partial: "board", locals: {game: @game})
+    ).broadcast
   end
 
 
@@ -118,6 +124,28 @@ class BoardReflex < ApplicationReflex
     end
 
     @game.next_move = @game.next_move == :red ? :blue : :red
+    redis.set(params[:id], Marshal.dump(@game))
+
+    #broadcast results to other players/spectators
+    cable_ready["game:#{@game.id}"].morph(
+      selector: "#board",
+      html: render(partial: "board", locals: {game: @game})
+    ).broadcast
+  end
+
+  def send_message(message)
+    redis = RedisSupplier.get
+    @game = Marshal.load(redis.get(params[:id]))
+
+    if session.id.to_s == @game.red_player
+      user = "Red"
+    elsif session.id.to_s == @game.blue_player
+      user = "Blue"
+    else
+      user = "Spectator"
+    end
+
+    @game.messages.append(Message.new(user, message))
     redis.set(params[:id], Marshal.dump(@game))
 
     #broadcast results to other players/spectators
