@@ -20,8 +20,8 @@ class BoardReflex < ApplicationReflex
 
     #broadcast results to other players/spectators
     cable_ready["game:#{@game.id}"].morph(
-      selector: "#board",
-      html: render(partial: "board", locals: {game: @game})
+      selector: "#game-headings",
+      html: render(partial: "game_headings", locals: {game: @game})
     ).broadcast
   end
 
@@ -133,10 +133,16 @@ class BoardReflex < ApplicationReflex
     redis.set(params[:id], Marshal.dump(@game))
 
     #broadcast results to other players/spectators
-    cable_ready["game:#{@game.id}"].morph(
-      selector: "#board",
-      html: render(partial: "board", locals: {game: @game})
-    ).broadcast
+    cable_ready["game:#{@game.id}"]
+      .morph(
+        selector: "#board",
+        html: render(partial: "board", locals: {game: @game})
+      )
+      .morph(
+        selector: "#game-headings",
+        html: render(partial: "game_headings", locals: {game: @game})
+      )
+      .broadcast
   end
 
   def send_message(message)
@@ -156,8 +162,8 @@ class BoardReflex < ApplicationReflex
 
     #broadcast results to other players/spectators
     cable_ready["game:#{@game.id}"].morph(
-      selector: "#board",
-      html: render(partial: "board", locals: {game: @game})
+      selector: "#chat-log",
+      html: render(partial: "chat_log", locals: {game: @game})
     ).broadcast
   end
 end

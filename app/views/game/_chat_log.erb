@@ -1,0 +1,5 @@
+<div id="chat-log">
+  <% for message in game.messages.last(10) %>
+    <p><%= message.user %>: <%= message.text %></p>
+  <% end %>
+</div>

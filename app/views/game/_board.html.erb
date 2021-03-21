@@ -1,58 +1,21 @@
 <div id="board">
-  <h2 class="text-center mb-5">
-    <span><%= game.next_move.to_s %>'s move</span>
-    <span> - Red captures: <%= game.red_captures %></span>
-    <span> - Blue captures: <%= game.blue_captures %></span>
-  </h2>
-  <% if !game.winner.nil? %> 
-    <div class="end-box">
-      <h2 class="end-text">
-        <% if game.winner_id.to_s == session.id.to_s %>
-          Winner
-      <% else %>
-        Loser (<%= game.winner %> won)
-      <% end %>
-      </h2>
-    </div>
+  <% for i in 0..18 %>
+    <div class="vertical-line" style="left: <%= i * 2 + 2 %>em"></div>
+    <div class="horizontal-line" style="top: <%= i * 2 + 1 %>em"></div>
   <% end %>
-  <div class="row justify-content-center mb-5">
-    <% if session.id.to_s != game.red_player && session.id.to_s != game.blue_player %>
-      <% if game.red_player.nil? %><button class="btn btn-danger mr-5" data-color="red" data-reflex="click->Board#join">Join as Red</button><% end %>
-      <% if game.blue_player.nil? %><button class="btn btn-primary" data-color="blue" data-reflex="click->Board#join">Join as Blue</button><% end %>
-    <% end %>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div>
-          <table>
-            <% for i in 0..18 %>
-              <div class="vertical-line" style="left: <%= i * 2 + 2 %>em"></div>
-              <div class="horizontal-line" style="top: <%= i * 2 + 1 %>em"></div>
-            <% end %>
-            <tbody>
-              <% for i in 0..18 %>
-                <tr class="board-row">
-                  <% for j in 0..18 %>
-                    <td data-x="<%=j%>" data-y="<%=i%>" data-reflex="click->Board#play">
-                      <div class = "board-tile">
-                        <div class="tile-<%= game.board[i][j].to_s %>"></div>
-                      </div>
-                    </td>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="col">
-        <h2 class="mb-3">Chat:</h2>
-        <% for message in game.messages.last(10) %>
-          <p><%= message.user %>: <%= message.text %></p>
-        <% end %>
-        <textarea id="message-box" data-controller="game" data-action="keydown->game#send_message"></textarea>
-      </div>
-    </div>
-  </div>
-<div>
+  <table>
+    <tbody>
+      <% for i in 0..18 %>
+        <tr class="board-row">
+          <% for j in 0..18 %>
+            <td data-x="<%=j%>" data-y="<%=i%>" data-reflex="click->Board#play">
+              <div class = "board-tile">
+                <div class="tile-<%= game.board[i][j].to_s %>"></div>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -5,4 +5,17 @@
   <h2 class="text-center">Blue Player</h2>
 <% end %>
 
-<%= render "board", :game => @game %>
+<%= render "game_headings", :game => @game %>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= render "board", :game => @game %>
+    </div>
+    <div class="col">
+      <h2 class="mb-3">Chat:</h2>
+        <%= render "chat_log", :game => @game %>
+      <textarea id="message-box" data-controller="game" data-action="keyup->game#send_message"></textarea>
+    </div>
+  </div>
+</div>
