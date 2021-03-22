@@ -9,9 +9,9 @@
       <h2 class="end-text">
         <% if game.winner_id.to_s == session.id.to_s %>
           Winner
-      <% else %>
-        Loser (<%= game.winner %> won)
-      <% end %>
+        <% else %>
+          Loser (<%= game.winner %> won)
+        <% end %>
       </h2>
     </div>
   <% end %>
@@ -19,6 +19,12 @@
     <% if session.id.to_s != game.red_player && session.id.to_s != game.blue_player %>
       <% if game.red_player.nil? %><button class="btn btn-danger mr-5" data-color="red" data-reflex="click->Board#join">Join as Red</button><% end %>
       <% if game.blue_player.nil? %><button class="btn btn-primary" data-color="blue" data-reflex="click->Board#join">Join as Blue</button><% end %>
+    <% end %>
+    <% if !game.winner.nil? && game.next_game.nil? %>
+      <a class="btn btn-primary" href='/game/new?previous=<%= @game.id %>'>Rematch</a>
+    <% end %>
+    <% if !game.next_game.nil? %>
+      <a class="btn btn-primary" href='/game/<%= @game.next_game %>'>Join Rematch</a>
     <% end %>
   </div>
 </div>

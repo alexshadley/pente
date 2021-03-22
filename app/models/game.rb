@@ -17,6 +17,8 @@ class Game
   attr_accessor :winner
   # winner's session id, nil until a win
   attr_accessor :winner_id
+  # if a player has requested a rematch, this will be the new game id
+  attr_accessor :next_game
   # log of messages
   attr_accessor :messages
 
