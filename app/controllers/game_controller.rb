@@ -3,6 +3,8 @@ require "json"
 require "securerandom"
 
 class GameController < ApplicationController
+  include CableReady::Broadcaster
+
   def create
     redis = RedisSupplier.get
 
@@ -14,6 +16,12 @@ class GameController < ApplicationController
       previous_game = Marshal.load(redis.get(previous_game_id))
       previous_game.next_game = game.id
       redis.set(previous_game_id, Marshal.dump(previous_game))
+
+      # tell users in the preivous game about the new game
+      cable_ready["game:#{previous_game_id}"].morph(
+        selector: "#game-headings",
+        html: render_to_string(partial: "game_headings", locals: {game: previous_game})
+      ).broadcast
     end
 
     redirect_to action: "show", id: game.id

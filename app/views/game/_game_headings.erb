@@ -23,10 +23,10 @@
       <button class="btn btn-primary" data-color="blue" data-reflex="click->Board#join">Join as Blue</button>
     <% end %>
     <% if !game.winner.nil? && game.next_game.nil? %>
-      <a class="btn btn-primary" href='/game/new?previous=<%= @game.id %>'>Rematch</a>
+      <a class="btn btn-primary" href='/game/new?previous=<%= game.id %>'>Rematch</a>
     <% end %>
     <% if !game.next_game.nil? %>
-      <a class="btn btn-primary" href='/game/<%= @game.next_game %>'>Join Rematch</a>
+      <a class="btn btn-primary" href='/game/<%= game.next_game %>'>Join Rematch</a>
     <% end %>
   </div>
 </div>
