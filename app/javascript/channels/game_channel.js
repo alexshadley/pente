@@ -20,6 +20,5 @@ function subscribe() {
 subscribe()
 
 document.addEventListener("turbolinks:load", function() {
-  console.log('turboLOAD')
   subscribe()
 });
