@@ -9,9 +9,13 @@ class BoardReflex < ApplicationReflex
 
     session_id = session.id.to_s
 
+    # don't allow one player to sign up for both 
+    if session_id == @game.red_player || session_id == @game.blue_player
+      return
+    end
+
     if element.dataset['color'] == 'red'
       @game.red_player = session_id
-      puts 'setting red player'
     elsif element.dataset['color'] == 'blue'
       @game.blue_player = session_id
     end
