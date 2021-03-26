@@ -2,6 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+/* ==========================================================================
+   Main
+   ========================================================================== */
+html {font-size: 100%;} /*16px*/
+
+body {
+  background: #f7f9fb;
+  font-weight: 400;
+  line-height: 1.75;
+  color: #000000;
+}
+
+h1 {font-size: 4.209rem;}
+
+h2 {font-size: 2.074rem;}
+
+h3 {font-size: 1.728rem;}
+
+h4 {font-size: 1.44rem;}
+
+h5 {font-size: 1.2rem;}
+
+small, .text_small {font-size: 0.833rem;}
+
+/* ==========================================================================
+   Board
+   ========================================================================== */
 table {
   border-spacing: 0px;
 }
@@ -36,7 +63,7 @@ td {
   border-radius: 1em;
   width: 1.5em;
   height: 1.5em;
-  background-color: red;
+  background-color:#dc3545;
 
   z-index: 1;
 }
@@ -49,29 +76,24 @@ td {
   border-radius: 1em;
   width: 1.5em;
   height: 1.5em;
-  background-color: blue;
+  background-color:#169db2;
 
   z-index: 1;
 }
 
-.end-box{
-  position: fixed;
-  width: 50%;
-  height: 30%;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  /* mmmm lemon chiffon */
-  background-color: lemonchiffon;
-
-  z-index: 2;
+/* ==========================================================================
+   Chat
+   ========================================================================== */
+.chat {
+  background: #e8ebed; 
+}
+.card-header {
+  font-size: 12px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
-.end-text{
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.card-body {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

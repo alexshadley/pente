@@ -1,5 +1,16 @@
-<div id="chat-log">
-  <% for message in game.messages.last(10) %>
-    <p><%= message.user %>: <%= message.text %></p>
+<% for message in game.messages.last(10) %> 
+  <% if message.user == "Red" %>
+    <div id="chat-log" class="card text-white bg-danger mb-3 " style="max-width: 10rem;">
+  <% elsif message.user == "Blue" %>
+    <div id="chat-log" class="card text-white bg-info mb-3" style="max-width: 10rem;">
+  <% else %>
+    <div id="chat-log" class="card text-white bg-warning mb-3" style="max-width: 10rem;">
   <% end %>
-</div>
+      <div class="card-header">
+        <%= message.user %>
+      </div>
+      <div class="card-body">
+        <%= message.text %> 
+      </div>
+    </div> 
+<% end %>

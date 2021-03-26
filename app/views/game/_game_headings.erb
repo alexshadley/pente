@@ -1,30 +1,37 @@
 <div id="game-headings">
-  <h2 class="text-center mb-5">
-    <span><%= game.next_move.to_s %>'s move</span>
-    <span> - Red captures: <%= game.red_captures %></span>
-    <span> - Blue captures: <%= game.blue_captures %></span>
-  </h2>
-  <% if !game.winner.nil? %> 
-    <div class="end-box">
-      <h2 class="end-text">
-        <% if game.winner_id.to_s == session.id.to_s %>
+  <div class="row">
+    <h4 class="text-center mb-5">
+      <%= game.next_move.to_s %>'s move
+    </h4> 
+  </div>
+
+  <div class="row">
+    <h4 class="text-center mb-5">
+      <span> Red captures: <%= game.red_captures %></span>
+      <span> - Blue captures: <%= game.blue_captures %></span>
+    </h4> 
+  </div>
+
+  <div class="row">
+    <% if !game.winner.nil? %>
+      <% if game.winner_id.to_s == session.id.to_s %>
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
           Winner
-        <% else %>
+        </div>
+      <% else %>
+        <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
           Loser (<%= game.winner %> won)
-        <% end %>
-      </h2>
+        </div>
+      <% end %> 
+    <% end %>
+
+    <div class="row justify-content-center mb-5">
+      <% if session.id.to_s != game.red_player && session.id.to_s != game.blue_player %>
+        <% if game.red_player.nil? %><button class="btn btn-danger mr-5" data-color="red" data-reflex="click->Board#join">Join as Red</button><% end %>
+        <% if game.blue_player.nil? %><button class="btn btn-primary" data-color="blue" data-reflex="click->Board#join">Join as Blue</button><% end %>
+      <% end %>
     </div>
-  <% end %>
-  <div class="row justify-content-center mb-5">
-    <% if session.id.to_s != game.red_player && session.id.to_s != game.blue_player %>
-      <% if game.red_player.nil? %><button class="btn btn-danger mr-5" data-color="red" data-reflex="click->Board#join">Join as Red</button><% end %>
-      <% if game.blue_player.nil? %><button class="btn btn-primary" data-color="blue" data-reflex="click->Board#join">Join as Blue</button><% end %>
-    <% end %>
-    <% if !game.winner.nil? && game.next_game.nil? %>
-      <a class="btn btn-primary" href='/game/new?previous=<%= @game.id %>'>Rematch</a>
-    <% end %>
-    <% if !game.next_game.nil? %>
-      <a class="btn btn-primary" href='/game/<%= @game.next_game %>'>Join Rematch</a>
-    <% end %>
   </div>
 </div>
