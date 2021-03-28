@@ -15,14 +15,16 @@
   </div>
 
   <div class="row">
-    <p><%= game.next_move.to_s %>'s move</p>
+    <div class="score-board">
+      <div id="red-label" class="score-board-label">red</div>
+      <div id="blue-label" class="score-board-label">blue</div>
+      <p>captures</p>
+      <span id="user-score"><%= game.red_captures %></span> : <span id="computer-score"><%= game.blue_captures %></span>
+    </div>
   </div>
 
-  <div class="row">
-    <h4 class="text-center mb-5">
-      <span> Red captures: <%= game.red_captures %></span>
-      <span> - Blue captures: <%= game.blue_captures %></span>
-    </h4> 
+  <div class="row justify-content-center">
+    <p><%= game.next_move.to_s %>'s move</p>
   </div>
 
   <div class="row">

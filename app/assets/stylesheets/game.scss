@@ -39,6 +39,44 @@ small, .text_small {font-size: 0.833rem;}
   justify-content: center;
 }
 
+.score-board {
+	border: 3px solid;
+	width: 300px;
+	margin: 40px auto;
+	font-size: 40px;
+	border-radius: 4px;
+	text-align: center;
+	padding: 15px 20px;
+	position: relative;
+  p {
+    font-size: 10px;
+    margin-bottom: 0px;
+  }
+}
+
+.score-board-label {
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 10px 6px;
+}
+
+#red-label {
+  background:#dc3545;
+	position: absolute;
+	top: 50%;
+	left: -5%;
+	transform: translate(-10%, -50%);
+}
+
+#blue-label {
+  background: #169db2;
+	position: absolute;
+	top: 50%;
+	right: -5%;
+	transform: translate(10%, -50%);
+}
+
+
 /* ==========================================================================
    Board
    ========================================================================== */
