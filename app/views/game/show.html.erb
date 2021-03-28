@@ -4,6 +4,14 @@
     <h1>Pente</h1>
   </div>
 
+  <div class="row justify-content-center">
+    <% if session.id.to_s == @game.red_player %>
+      <span class="badge badge-pill badge-danger heading-button"> <h4>Red Player</h4> </span>
+    <% elsif session.id.to_s == @game.blue_player %>
+      <span class="badge badge-pill badge-info heading-button"> <h4>Blue Player</h4> </span>
+    <% end %>
+  </div>
+
   <%= render "game_headings", :game => @game %>
 
   <div class="row">

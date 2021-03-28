@@ -1,19 +1,13 @@
 <div id="game-headings">
+
   <div class="row justify-content-center">
     <div class="col-sm-3 text-center">
-      <% if session.id.to_s == game.red_player %>
-        <span class="badge badge-pill badge-danger heading-button"> <h4>Red Player</h4> </span>
-      <% end %>
-
       <% if game.red_player.nil? %>
         <button class="btn btn-danger heading-button" data-color="red" data-reflex="click->Board#join"> <h4>Join as Red</h4> </button>
       <% end %>
     </div>
 
     <div class="col-sm-3 text-center ">
-      <% if session.id.to_s == game.blue_player %>
-        <span class="badge badge-pill badge-info heading-button"> <h4>Blue Player</h4> </span>
-      <% end %>
       <% if game.blue_player.nil? %>
         <button class="btn btn-info heading-button" data-color="blue" data-reflex="click->Board#join"> <h4>Join as Blue</h4> </button>
       <% end %>
