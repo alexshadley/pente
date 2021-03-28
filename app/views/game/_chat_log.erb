@@ -1,7 +1,7 @@
 <div id="chat-log">
   <h2>Chat</h2>
 
-  <div class="form-group">
+  <div class="chat-messages form-group">
     <% for message in game.messages.last(10) %>
       <% if message.user == "Red" %>
         <div class="card text-white bg-danger mb-3" style="max-width: 10rem;">

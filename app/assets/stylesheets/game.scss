@@ -139,6 +139,16 @@ td {
 .chat {
   background: rgba(232, 235, 237,0.5);
 }
+
+.chat-messages {
+  overflow: scroll;
+  height: 600px
+}
+
+.chat::-webkit-scrollbar {
+  width: 1em;
+}
+
 .card-header {
   font-size: 12px;
   padding-top: 0px;
@@ -148,4 +158,8 @@ td {
 .card-body {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+#message-box {
+  width: 100%;
 }
