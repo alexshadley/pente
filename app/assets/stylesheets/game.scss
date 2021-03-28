@@ -76,6 +76,15 @@ small, .text_small {font-size: 0.833rem;}
 	transform: translate(10%, -50%);
 }
 
+.game-result {
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.game-rematch {
+  margin-bottom: 20px;
+}
 
 /* ==========================================================================
    Board
