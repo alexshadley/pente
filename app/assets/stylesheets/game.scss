@@ -10,7 +10,6 @@ html {font-size: 100%;} /*16px*/
 body {
   background: #f7f9fb;
   font-weight: 400;
-  line-height: 1.75;
   color: #000000;
 }
 
@@ -20,11 +19,25 @@ h2 {font-size: 2.074rem;}
 
 h3 {font-size: 1.728rem;}
 
-h4 {font-size: 1.44rem;}
+h4 {
+  font-size: 1.44rem;
+  margin-bottom: 0;
+}
 
 h5 {font-size: 1.2rem;}
 
 small, .text_small {font-size: 0.833rem;}
+
+/* ==========================================================================
+   Headings
+   ========================================================================== */
+.heading-button {
+  height: 60px;
+  width: 140px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* ==========================================================================
    Board
@@ -53,6 +66,7 @@ td {
   position: relative;
   min-height: 2em;
   min-width: 2em;
+  background: rgba(232, 235, 237,0.5);
 }
 
 .tile-red {
@@ -85,7 +99,7 @@ td {
    Chat
    ========================================================================== */
 .chat {
-  background: #e8ebed; 
+  background: rgba(232, 235, 237,0.5);
 }
 .card-header {
   font-size: 12px;

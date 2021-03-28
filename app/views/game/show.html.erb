@@ -1,13 +1,7 @@
 <div class="container">
-  <h1 class="text-center">Pente</h1>
 
-  <div class="row">
-    <% if session.id.to_s == @game.red_player %>
-      <h2 class="text-center">Red Player</h2>
-    <% end %>
-    <% if session.id.to_s == @game.blue_player %>
-      <h2 class="text-center">Blue Player</h2>
-    <% end %>
+  <div class="row justify-content-center">
+    <h1>Pente</h1>
   </div>
 
   <%= render "game_headings", :game => @game %>
@@ -17,9 +11,7 @@
       <%= render "board", :game => @game %>
     </div>
     <div class="col-lg-3 chat">
-      <h2>Chat:</h2>
-        <%= render "chat_log", :game => @game %>
-      <textarea id="message-box" data-controller="game" data-action="keyup->game#send_message"></textarea>
+      <%= render "chat_log", :game => @game %>
     </div>
   </div>
 </div>
