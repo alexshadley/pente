@@ -1,16 +1,18 @@
-<% for message in game.messages %>
-  <% if message.user == "Red" %>
-    <div class="card text-white bg-danger mb-3" style="max-width: 10rem;">
-  <% elsif message.user == "Blue" %>
-    <div class="card text-white bg-info mb-3 ml-auto" style="max-width: 10rem;">
-  <% else %>
-    <div class="card text-white bg-warning mb-3" style="max-width: 10rem;">
+<div id="chat-log">
+  <% for message in game.messages %>
+    <% if message.user == "Red" %>
+      <div class="card text-white bg-danger mb-3" style="max-width: 10rem;">
+    <% elsif message.user == "Blue" %>
+      <div class="card text-white bg-info mb-3 ml-auto" style="max-width: 10rem;">
+    <% else %>
+      <div class="card text-white bg-warning mb-3" style="max-width: 10rem;">
+    <% end %>
+        <div class="card-header">
+          <%= message.user %>
+        </div>
+        <div class="card-body">
+          <%= message.text %> 
+        </div>
+      </div> 
   <% end %>
-      <div class="card-header">
-        <%= message.user %>
-      </div>
-      <div class="card-body">
-        <%= message.text %> 
-      </div>
-    </div> 
-<% end %>
+</div>
