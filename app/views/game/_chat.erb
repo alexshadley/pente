@@ -1,0 +1,8 @@
+<div>
+  <h2>Chat</h2>
+
+  <div class="chat-messages form-group">
+    <%= render "chat_log", :game => game %>
+    <textarea id="message-box" data-controller="game" data-action="keyup->game#send_message"></textarea>
+  </div>
+</div>
