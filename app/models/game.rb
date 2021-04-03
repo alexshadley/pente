@@ -30,4 +30,14 @@ class Game
     @blue_captures = 0
     @messages = []
   end
+
+  def player_for_id(session_id)
+    if session_id == self.red_player
+      return :red
+    elsif session_id == self.blue_player
+      return :blue
+    else
+      return :spectator
+    end
+  end
 end

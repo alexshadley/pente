@@ -1,6 +1,7 @@
 require "redis_supplier"
 require "json"
 require "securerandom"
+require "game_helper"
 
 class GameController < ApplicationController
   include CableReady::Broadcaster
@@ -18,10 +19,15 @@ class GameController < ApplicationController
       redis.set(previous_game_id, Marshal.dump(previous_game))
 
       # tell users in the preivous game about the new game
-      cable_ready["game:#{previous_game_id}"].morph(
-        selector: "#game-headings",
-        html: render_to_string(partial: "game_headings", locals: {game: previous_game})
-      ).broadcast
+      GameHelper.broadcast_to_players(
+        previous_game,
+        ->(channel_id, session_id) {
+          cable_ready[channel_id].morph(
+            selector: "#game-headings",
+            html: render_to_string(partial: "game_headings", locals: {game: previous_game, session_id: session_id})
+          ).broadcast
+        }
+      )
     end
 
     redirect_to action: "show", id: game.id

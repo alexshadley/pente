@@ -1,18 +1,27 @@
-<div id="game-headings">
-
+<div id="game-headings" data-controller="game" data-player="<%= game.player_for_id(session_id) %>">
   <div class="row justify-content-center">
-    <div class="col-sm-3 text-center">
-      <% if game.red_player.nil? %>
-        <button class="btn btn-danger heading-button" data-color="red" data-reflex="click->Board#join"> <h4>Join as Red</h4> </button>
-      <% end %>
-    </div>
-
-    <div class="col-sm-3 text-center">
-      <% if game.blue_player.nil? %>
-        <button class="btn btn-info heading-button" data-color="blue" data-reflex="click->Board#join"> <h4>Join as Blue</h4> </button>
-      <% end %>
-    </div>
+    <% if session_id == game.red_player %>
+      <span class="badge badge-pill badge-danger heading-button"> <h4>Red Player</h4> </span>
+    <% elsif session_id == game.blue_player %>
+      <span class="badge badge-pill badge-info heading-button"> <h4>Blue Player</h4> </span>
+    <% end %>
   </div>
+
+  <% if session_id != game.red_player && session_id != game.blue_player %>
+    <div class="row justify-content-center" data-controller="game">
+      <div class="col-sm-3 text-center">
+        <% if game.red_player.nil? %>
+          <button class="btn btn-danger heading-button" data-color="red" data-reflex="click->Board#join"> <h4>Join as Red</h4> </button>
+        <% end %>
+      </div>
+
+      <div class="col-sm-3 text-center">
+        <% if game.blue_player.nil? %>
+          <button class="btn btn-info heading-button" data-color="blue" data-reflex="click->Board#join"> <h4>Join as Blue</h4> </button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="row">
     <div class="score-board">
@@ -29,7 +38,7 @@
 
   <div class="row text-center">
     <% if !game.winner.nil? %>
-      <% if game.winner_id.to_s == session.id.to_s %>
+      <% if game.winner_id.to_s == session_id %>
         <div class="alert alert-dismissible alert-success game-result">
           Winner
         </div>

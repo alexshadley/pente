@@ -1,4 +1,5 @@
 require "redis_supplier"
+require "game_helper"
 
 class BoardReflex < ApplicationReflex
   DIRECTIONS = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]
@@ -22,11 +23,16 @@ class BoardReflex < ApplicationReflex
 
     redis.set(params[:id], Marshal.dump(@game))
 
-    #broadcast results to other players/spectators
-    cable_ready["game:#{@game.id}"].morph(
-      selector: "#game-headings",
-      html: render(partial: "game_headings", locals: {game: @game})
-    ).broadcast
+    # broadcast results to other players/spectators
+    GameHelper.broadcast_to_players(
+      @game,
+      ->(channel_id, session_id) {
+        cable_ready[channel_id].morph(
+          selector: "#game-headings",
+          html: render(partial: "game_headings", locals: {game: @game, session_id: session_id})
+        ).broadcast
+      }
+    )
   end
 
 
@@ -137,16 +143,21 @@ class BoardReflex < ApplicationReflex
     redis.set(params[:id], Marshal.dump(@game))
 
     #broadcast results to other players/spectators
-    cable_ready["game:#{@game.id}"]
-      .morph(
-        selector: "#board",
-        html: render(partial: "board", locals: {game: @game})
-      )
-      .morph(
-        selector: "#game-headings",
-        html: render(partial: "game_headings", locals: {game: @game})
-      )
-      .broadcast
+    GameHelper.broadcast_to_players(
+      @game,
+      ->(channel_id, session_id) {
+        cable_ready[channel_id]
+          .morph(
+            selector: "#board",
+            html: render(partial: "board", locals: {game: @game, session_id: session_id})
+          )
+          .morph(
+            selector: "#game-headings",
+            html: render(partial: "game_headings", locals: {game: @game, session_id: session_id})
+          )
+          .broadcast
+      }
+    )
   end
 
   def send_message(message)
@@ -165,9 +176,14 @@ class BoardReflex < ApplicationReflex
     redis.set(params[:id], Marshal.dump(@game))
 
     #broadcast results to other players/spectators
-    cable_ready["game:#{@game.id}"].morph(
-      selector: "#chat-log",
-      html: render(partial: "chat_log", locals: {game: @game})
-    ).broadcast
+    GameHelper.broadcast_to_players(
+      @game,
+      ->(channel_id, session_id) {
+        cable_ready[channel_id].morph(
+          selector: "#chat-log",
+          html: render(partial: "chat_log", locals: {game: @game, session_id: session_id})
+        ).broadcast
+      }
+    )
   end
 end
